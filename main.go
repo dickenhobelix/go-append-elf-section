@@ -9,9 +9,18 @@ import (
 func main() {
 	const payload_elf_section_name = "payload"
 
-	selfPath, _ := os.Executable()
-	selfFile, _ := os.Open(selfPath)
-	selfElf, _ := elf.NewFile(selfFile)
+	selfPath, err := os.Executable()
+	if err != nil {
+		panic(err)
+	}
+	selfFile, err := os.Open(selfPath)
+	if err != nil {
+		panic(err)
+	}
+	selfElf, err := elf.NewFile(selfFile)
+	if err != nil {
+		panic(err)
+	}
 	var data []byte
 	found := false
 	for _, s := range selfElf.Sections {
