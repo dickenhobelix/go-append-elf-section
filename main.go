@@ -27,6 +27,7 @@ func main() {
 		if s.Name == payload_elf_section_name {
 			data, _ = s.Data()
 			found = true
+			break
 		}
 	}
 	if found {
